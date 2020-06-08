@@ -3,6 +3,8 @@
  */
 package com.flipcard.client;
 
+import java.util.Scanner;
+
 import com.flipcard.bean.Customer;
 import com.flipcard.bean.service.CustOperation;
 import com.flipcard.bean.service.Operation;
@@ -17,34 +19,48 @@ public class CustomerClient {
 	}
 	
 	public static void arrayExample() {
+		Scanner sc = new Scanner(System.in);
 		Operation op = new CustOperation();
-		for(Integer i=0; i<5; i++) {
-			op.addCustomer(getCustomer(i));
-		}
+		do {
+			System.out.println("0. To Exit");
+			System.out.println("1. To add");
+			System.out.println("2. To delete");
+			System.out.println("3. To edit");
+			System.out.println("4. To print list");
+			
+			int input = sc.nextInt();
+			if(input == 1) {
+				op.addCustomer(getCustomer());
+			} else if(input == 2) {
+				System.out.println("Enter Customer Id to Delete");
+				op.deleteCustomer(sc.nextInt());
+			} else if(input == 3) {
+				System.out.println("Enter Customer Id");
+				int custId = sc.nextInt();
+				op.editCustomer(getCustomer(), custId);
+			} else if(input == 4) {
+				op.printAllCustomer();
+			} else {
+				break;
+			}
+			
+		}while(true);
 		
-		op.printAllCustomer();
-		
-		System.out.println("");
-		
-		op.deleteCustomer(2);
-		
-		System.out.println("");
-		
-		op.editCustomer(getCustomer(6), 3);
-		op.editCustomer(getCustomer(8), 10);
-		
-		System.out.println("");
-		
-		op.printAllCustomer();
+		System.out.println("End of Program");
 		
 	}
 	
-	public static Customer getCustomer(Integer id) {
+	public static Customer getCustomer() {
 		Customer cust = new Customer();
-		cust.setCustId(id);
-		cust.setCustName("flipcard" + id.toString());
-		cust.setCustAddress("Delhi" + id.toString());
-		cust.setLocation("India" + id.toString());
+		Scanner sc = new Scanner(System.in);
+		System.out.println("ID?");
+		cust.setCustId(sc.nextInt());
+		System.out.println("Name?");
+		cust.setCustName(sc.next());
+		System.out.println("Address?");
+		cust.setCustAddress(sc.next());
+		System.out.println("Location?");
+		cust.setLocation(sc.next());
 		return cust;
 	}
 }
