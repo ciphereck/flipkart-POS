@@ -3,21 +3,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.flipcard.bean.Customer;
+import com.flipcard.exception.NotDeliveringAtLocationException;
 
 public class CustOperation implements Operation {
-//	Customer[] custArray = new Customer[100];
-//	int size = 0;
-	List<Customer> custArray = new ArrayList<Customer>();
+		List<Customer> custArray = new ArrayList<Customer>();
+		List<String> notDelivering = new ArrayList<String>();
+		
+		public CustOperation() {
+			notDelivering.add("Delhi");
+			notDelivering.add("Jaipur");
+		}
 	
 		@Override
-		public Customer addCustomer(Customer cust) {
-//			if(size >= 100) {
-//				System.out.println("memory full");
-//				return null;
+		public Customer addCustomer(Customer cust) throws NotDeliveringAtLocationException {
+//			if(cust.getLocation().contains("Delhi")) {
+//				throw new NotDeliveringAtLocationException(cust.getLocation());
+//			} else if(cust.getLocation().contains("Jaipur")) {
+//				throw new NotDeliveringAtLocationException(cust.getLocation());
 //			}
-//			System.out.println("Adding Customer" + cust);
-//			custArray[size] = cust;
-//			size++;
+			
+			if(notDelivering.contains(cust.getLocation())) {
+				throw new NotDeliveringAtLocationException(cust.getLocation());
+			}
 			custArray.add(cust);
 			return cust;
 		}
@@ -56,33 +63,25 @@ public class CustOperation implements Operation {
 			return;
 		}
 		
-//		@Override
-//		public void shiftCustomer() {
-//			int i=0, j=0;
-//			while(j<size) {
-//				if(custArray[j]!=null) {
-//					custArray[i] = custArray[j];
-//					if(i!=j) {
-//						custArray[j]=null;
-//					}
-//					i++;
-//				}
-//				j++;
-//			}
-//			size = i;
-//		}
+		public Customer findCustomerById(int custId) {
+			for(Customer customer : custArray) {
+				if(customer.getCustId() == custId) {
+					return customer;
+				}
+			}
+			return null;
+		}
 		
 		@Override
 		public Customer deleteCustomer(int custId) {
-			for(int i=0; i<custArray.size();i++) {
-				if(custArray.get(i).getCustId() == custId) {
-					//customer with custId will get deleted here
-					System.out.println("deleted customer with Id " + custId);
-					System.out.println("");
-					custArray.remove(i);
-					return null;
-				}
+			Customer cust = findCustomerById(custId);
+			if(cust != null) {
+				System.out.println("deleted customer with Id " + custId);
+				System.out.println("");
+				custArray.remove(cust);
+				return null;
 			}
+
 			//no customer with custId found
 			System.out.println("no customer with given Id");
 			System.out.println("");
@@ -90,19 +89,20 @@ public class CustOperation implements Operation {
 		}
 	
 		@Override
-		public Customer editCustomer(Customer cust, int custId) {
-		
-			for(int i=0; i<custArray.size();i++) {
-				if(custArray.get(i).getCustId() == custId) {
-					//customer with custId will get deleted here
-					custArray.set(i, cust);
-					System.out.println("customer edited on details " + custId);
-					
-					String custEdit="edited customer";
-					System.out.println("");
-					
-					return cust;
-				}
+		public Customer editCustomer(Customer cust, int custId) throws NotDeliveringAtLocationException {
+			if(notDelivering.contains(cust.getLocation())) {
+				throw new NotDeliveringAtLocationException(cust.getLocation());
+			}
+			
+			Customer custOld = findCustomerById(custId);
+			if(custOld != null) {
+				custArray.remove(custOld);
+				custArray.add(cust);
+				System.out.println("customer edited on details " + custId);
+				
+				System.out.println("");
+				
+				return cust;
 			}
 			//no customer with custId found
 			System.out.println("no customer with given Id " + custId);

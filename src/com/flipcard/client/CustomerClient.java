@@ -8,6 +8,7 @@ import java.util.Scanner;
 import com.flipcard.bean.Customer;
 import com.flipcard.bean.service.CustOperation;
 import com.flipcard.bean.service.Operation;
+import com.flipcard.exception.NotDeliveringAtLocationException;
 
 /**
  * @author Lenovo
@@ -32,7 +33,12 @@ public class CustomerClient {
 			int input = sc.nextInt();
 			if(input == 1) {
 				//add customer
-				operation.addCustomer(getCustomer());
+				try {
+					operation.addCustomer(getCustomer());
+				} catch (NotDeliveringAtLocationException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				}
 			} else if(input == 2) {
 				//delete customer
 				System.out.println("Enter Customer Id to Delete");
@@ -41,7 +47,12 @@ public class CustomerClient {
 				//edit customer
 				System.out.println("Enter Customer Id");
 				int custId = sc.nextInt();
-				operation.editCustomer(getCustomer(), custId);
+				try {
+					operation.editCustomer(getCustomer(), custId);
+				} catch (NotDeliveringAtLocationException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				}
 			} else if(input == 4) {
 				//print all customer
 				operation.printAllCustomer();
