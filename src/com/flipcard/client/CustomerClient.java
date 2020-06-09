@@ -20,37 +20,49 @@ public class CustomerClient {
 	
 	public static void arrayExample() {
 		Scanner sc = new Scanner(System.in);
-		Operation op = new CustOperation();
+		Operation operation = new CustOperation();
 		do {
 			System.out.println("0. To Exit");
 			System.out.println("1. To add");
 			System.out.println("2. To delete");
 			System.out.println("3. To edit");
-			System.out.println("4. To print list");
+			System.out.println("4. To print all customer");
+			System.out.println("5. To print customer");
 			
 			int input = sc.nextInt();
 			if(input == 1) {
-				op.addCustomer(getCustomer());
+				//add customer
+				operation.addCustomer(getCustomer());
 			} else if(input == 2) {
+				//delete customer
 				System.out.println("Enter Customer Id to Delete");
-				op.deleteCustomer(sc.nextInt());
+				operation.deleteCustomer(sc.nextInt());
 			} else if(input == 3) {
+				//edit customer
 				System.out.println("Enter Customer Id");
 				int custId = sc.nextInt();
-				op.editCustomer(getCustomer(), custId);
+				operation.editCustomer(getCustomer(), custId);
 			} else if(input == 4) {
-				op.printAllCustomer();
+				//print all customer
+				operation.printAllCustomer();
+			} else if(input == 5) {
+				//print specific customer with given Id
+				int id = sc.nextInt();
+				operation.printCustomer(id);
 			} else {
+				//wrong input
 				break;
 			}
 			
 		}while(true);
 		
+		//End of program
 		System.out.println("End of Program");
 		
 	}
 	
 	public static Customer getCustomer() {
+		//use to take input details of customer
 		Customer cust = new Customer();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("ID?");
