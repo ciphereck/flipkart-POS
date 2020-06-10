@@ -1,6 +1,8 @@
-package com.flipcard.bean.service;
+package com.flipcard.service;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import com.flipcard.bean.Customer;
 import com.flipcard.exception.NotDeliveringAtLocationException;
@@ -8,6 +10,7 @@ import com.flipcard.exception.NotDeliveringAtLocationException;
 public class CustOperation implements Operation {
 		List<Customer> custArray = new ArrayList<Customer>();
 		List<String> notDelivering = new ArrayList<String>();
+		private static Logger logger = Logger.getLogger(CustOperation.class);
 		
 		public CustOperation() {
 			notDelivering.add("Delhi");
@@ -16,23 +19,18 @@ public class CustOperation implements Operation {
 	
 		@Override
 		public Customer addCustomer(Customer cust) throws NotDeliveringAtLocationException {
-//			if(cust.getLocation().contains("Delhi")) {
-//				throw new NotDeliveringAtLocationException(cust.getLocation());
-//			} else if(cust.getLocation().contains("Jaipur")) {
-//				throw new NotDeliveringAtLocationException(cust.getLocation());
-//			}
-			
 			if(notDelivering.contains(cust.getLocation())) {
 				throw new NotDeliveringAtLocationException(cust.getLocation());
 			}
 			custArray.add(cust);
+			logger.debug("Added Customer " + cust.getCustId());
 			return cust;
 		}
 		
 		@Override
 		public void printAllCustomer() {
 			if(custArray.size()==0) {
-				System.out.println("no customer here. Please add new customers");
+				logger.debug("no customer here. Please add new customers");
 			}
 			for(int i=0; i<custArray.size(); i++) {
 				printCustomer(custArray.get(i));
@@ -48,18 +46,16 @@ public class CustOperation implements Operation {
 		
 		@Override
 		public void printCustomer(Customer cust) {
-			System.out.println("printing customer");
+			logger.debug("printing customer");
 			if(cust == null) {
 				// if customer reference is null
-				System.out.println("no customer");
-				System.out.println("");
+				logger.debug("no customer");
 				return;
 			}
-			System.out.println(cust.getCustId());
-			System.out.println(cust.getCustName());
-			System.out.println(cust.getCustAddress());
-			System.out.println(cust.getLocation());
-			System.out.println("");
+			logger.info(cust.getCustId());
+			logger.info(cust.getCustName());
+			logger.info(cust.getCustAddress());
+			logger.info(cust.getLocation());
 			return;
 		}
 		
@@ -76,15 +72,13 @@ public class CustOperation implements Operation {
 		public Customer deleteCustomer(int custId) {
 			Customer cust = findCustomerById(custId);
 			if(cust != null) {
-				System.out.println("deleted customer with Id " + custId);
-				System.out.println("");
+				logger.debug("deleted customer with Id " + custId);
 				custArray.remove(cust);
 				return null;
 			}
 
 			//no customer with custId found
-			System.out.println("no customer with given Id");
-			System.out.println("");
+			logger.debug("no customer with given Id");
 			return null;
 		}
 	
@@ -98,15 +92,13 @@ public class CustOperation implements Operation {
 			if(custOld != null) {
 				custArray.remove(custOld);
 				custArray.add(cust);
-				System.out.println("customer edited on details " + custId);
+				logger.debug("customer edited on details " + custId);
 				
-				System.out.println("");
 				
 				return cust;
 			}
 			//no customer with custId found
-			System.out.println("no customer with given Id " + custId);
-			System.out.println("");
+			logger.debug("no customer with given Id " + custId);
 			return null;
 		}
 }

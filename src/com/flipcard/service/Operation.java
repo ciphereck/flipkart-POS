@@ -1,4 +1,4 @@
-package com.flipcard.bean.service;
+package com.flipcard.service;
 
 import com.flipcard.bean.Customer;
 import com.flipcard.exception.NotDeliveringAtLocationException;

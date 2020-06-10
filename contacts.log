@@ -1,0 +1,66 @@
+10:35:59,480 DEBUG CustOperation,main:26 - Added Customer
+10:44:15,853 DEBUG CustOperation,main:26 - Added Customer 5
+10:49:49,442 DEBUG CustOperation,main:26 - Added Customer 5
+10:49:53,415 DEBUG CustOperation,main:48 - Enter Customer Id to Delete
+10:49:54,813 DEBUG CustOperation,main:82 - no customer with given Id
+10:49:54,819 DEBUG CustOperation,main:83 - 
+10:54:38,000 DEBUG CustOperation,main:26 - Added Customer 5
+10:54:39,545 DEBUG CustOperation,main:49 - printing customer
+10:54:39,547  INFO CustOperation,main:55 - 5
+10:54:39,550  INFO CustOperation,main:56 - 5
+10:54:39,552  INFO CustOperation,main:57 - 5
+10:54:39,553  INFO CustOperation,main:58 - 5
+10:54:51,236 DEBUG CustOperation,main:49 - printing customer
+10:54:51,237  INFO CustOperation,main:55 - 5
+10:54:51,237  INFO CustOperation,main:56 - 5
+10:54:51,238  INFO CustOperation,main:57 - 5
+10:54:51,238  INFO CustOperation,main:58 - 5
+11:09:16,006  INFO CustOperation,main:25 - Program Started
+11:09:23,553 DEBUG CustOperation,main:33 - no customer here. Please add new customers
+11:18:36,706  INFO CustOperation,main:26 - Program Started
+11:20:12,243  INFO CustOperation,main:25 - Program Started
+11:20:12,263  INFO CustOperation,main:33 - 0. To Exit
+11:20:12,264  INFO CustOperation,main:34 - 1. To add
+11:20:12,264  INFO CustOperation,main:35 - 2. To delete
+11:20:12,265  INFO CustOperation,main:36 - 3. To edit
+11:20:12,266  INFO CustOperation,main:37 - 4. To print all customer
+11:20:12,266  INFO CustOperation,main:38 - 5. To print customer
+11:25:18,104  INFO CustOperation,main:25 - Program Started
+11:25:18,140  INFO CustOperation,main:33 - 0. To Exit
+11:25:18,141  INFO CustOperation,main:34 - 1. To add
+11:25:18,143  INFO CustOperation,main:35 - 2. To delete
+11:25:18,143  INFO CustOperation,main:36 - 3. To edit
+11:25:18,143  INFO CustOperation,main:37 - 4. To print all customer
+11:25:18,144  INFO CustOperation,main:38 - 5. To print customer
+11:25:20,939 DEBUG CustOperation,main:33 - no customer here. Please add new customers
+11:25:20,939  INFO CustOperation,main:33 - 0. To Exit
+11:25:20,939  INFO CustOperation,main:34 - 1. To add
+11:25:20,940  INFO CustOperation,main:35 - 2. To delete
+11:25:20,940  INFO CustOperation,main:36 - 3. To edit
+11:25:20,940  INFO CustOperation,main:37 - 4. To print all customer
+11:25:20,941  INFO CustOperation,main:38 - 5. To print customer
+11:27:09,753  INFO CustOperation,main:23 - Program Started
+11:27:09,791  INFO CustOperation,main:31 - 0. To Exit
+11:27:09,792  INFO CustOperation,main:32 - 1. To add
+11:27:09,792  INFO CustOperation,main:33 - 2. To delete
+11:27:09,793  INFO CustOperation,main:34 - 3. To edit
+11:27:09,794  INFO CustOperation,main:35 - 4. To print all customer
+11:27:09,799  INFO CustOperation,main:36 - 5. To print customer
+11:27:23,546  INFO CustOperation,main:23 - Program Started
+11:27:23,577  INFO CustOperation,main:31 - 0. To Exit
+11:27:23,578  INFO CustOperation,main:32 - 1. To add
+11:27:23,578  INFO CustOperation,main:33 - 2. To delete
+11:27:23,579  INFO CustOperation,main:34 - 3. To edit
+11:27:23,580  INFO CustOperation,main:35 - 4. To print all customer
+11:27:23,580  INFO CustOperation,main:36 - 5. To print customer
+11:27:24,670  INFO CustOperation,main:84 - ID?
+11:27:26,319  INFO CustOperation,main:86 - Name?
+11:27:28,039  INFO CustOperation,main:88 - Address?
+11:27:28,557  INFO CustOperation,main:90 - Location?
+11:27:29,982 ERROR CustOperation,main:45 - Not Delivering on given location: Delhi
+11:27:29,982  INFO CustOperation,main:31 - 0. To Exit
+11:27:29,983  INFO CustOperation,main:32 - 1. To add
+11:27:29,984  INFO CustOperation,main:33 - 2. To delete
+11:27:29,984  INFO CustOperation,main:34 - 3. To edit
+11:27:29,985  INFO CustOperation,main:35 - 4. To print all customer
+11:27:29,985  INFO CustOperation,main:36 - 5. To print customer

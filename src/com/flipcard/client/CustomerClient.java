@@ -5,17 +5,22 @@ package com.flipcard.client;
 
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.flipcard.bean.Customer;
-import com.flipcard.bean.service.CustOperation;
-import com.flipcard.bean.service.Operation;
 import com.flipcard.exception.NotDeliveringAtLocationException;
+import com.flipcard.service.CustOperation;
+import com.flipcard.service.Operation;
 
 /**
  * @author Lenovo
  *
  */
 public class CustomerClient {
+	private static Logger logger = Logger.getLogger(CustOperation.class);
+	
 	public static void main(String[] args) {
+		logger.info("Program Started");
 		arrayExample();
 	}
 	
@@ -23,12 +28,12 @@ public class CustomerClient {
 		Scanner sc = new Scanner(System.in);
 		Operation operation = new CustOperation();
 		do {
-			System.out.println("0. To Exit");
-			System.out.println("1. To add");
-			System.out.println("2. To delete");
-			System.out.println("3. To edit");
-			System.out.println("4. To print all customer");
-			System.out.println("5. To print customer");
+			logger.info("0. To Exit");
+			logger.info("1. To add");
+			logger.info("2. To delete");
+			logger.info("3. To edit");
+			logger.info("4. To print all customer");
+			logger.info("5. To print customer");
 			
 			int input = sc.nextInt();
 			if(input == 1) {
@@ -37,21 +42,21 @@ public class CustomerClient {
 					operation.addCustomer(getCustomer());
 				} catch (NotDeliveringAtLocationException e) {
 					// TODO Auto-generated catch block
-					System.out.println(e.getMessage());
+					logger.error(e.getMessage());
 				}
 			} else if(input == 2) {
 				//delete customer
-				System.out.println("Enter Customer Id to Delete");
+				logger.debug("Enter Customer Id to Delete");
 				operation.deleteCustomer(sc.nextInt());
 			} else if(input == 3) {
 				//edit customer
-				System.out.println("Enter Customer Id");
+				logger.debug("Enter Customer Id");
 				int custId = sc.nextInt();
 				try {
 					operation.editCustomer(getCustomer(), custId);
 				} catch (NotDeliveringAtLocationException e) {
 					// TODO Auto-generated catch block
-					System.out.println(e.getMessage());
+					logger.error(e.getMessage());
 				}
 			} else if(input == 4) {
 				//print all customer
@@ -68,7 +73,7 @@ public class CustomerClient {
 		}while(true);
 		
 		//End of program
-		System.out.println("End of Program");
+		logger.debug("End of Program");
 		
 	}
 	
@@ -76,13 +81,13 @@ public class CustomerClient {
 		//use to take input details of customer
 		Customer cust = new Customer();
 		Scanner sc = new Scanner(System.in);
-		System.out.println("ID?");
+		logger.info("ID?");
 		cust.setCustId(sc.nextInt());
-		System.out.println("Name?");
+		logger.info("Name?");
 		cust.setCustName(sc.next());
-		System.out.println("Address?");
+		logger.info("Address?");
 		cust.setCustAddress(sc.next());
-		System.out.println("Location?");
+		logger.info("Location?");
 		cust.setLocation(sc.next());
 		return cust;
 	}
